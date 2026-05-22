@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ME 419 — Kloof Junior Primary · Knowledge Hub · Stage 4 Elemental Estimate</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Metric Edge brand palette (source: BRAND_COMPLIANCE_PROTOCOL.md) */
+  --charcoal: #2E3A45;
+  --charcoal-d: #1F2830;
+  --charcoal-l: #4A5868;
+  --yellow:   #F5BF2B;
+  --yellow-d: #D4A314;
+  --yellow-l: #FFE082;
+  --offwhite: #FAFAF7;
+  --paper:    #ffffff;
+  --paper-2:  #f4f3ee;
+  --ink:      #1F2830;
+  --ink-2:    #4A5868;
+  --muted:    #7A8590;
+  --border:   #e3e1d8;
+  --border-d: #cfccc1;
+  --accent-blue: #4A6B85;
+  --accent-blue-l: #6B8AA3;
+  --green:  #2E7D32;
+  --green-d: #1B5E20;
+  --green-tint: #E8F5E9;
+  --red:    #C62828;
+  --red-tint: #FFEBEE;
+
+  --r: 6px;
+  --rs: 3px;
+  --t: 0.2s ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--offwhite);
+  color: var(--ink);
+  line-height: 1.55;
+  min-height: 100vh;
+}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(46,58,69,0.25); border-radius: 4px; }
+
+/* ============================================================
+   RULER TICK MOTIF (Metric Edge brand signature)
+   Yellow band with charcoal tick marks at regular intervals
+   ============================================================ */
+.ruler-tick {
+  height: 8px;
+  background:
+    linear-gradient(to right, transparent calc(50% - 0.5px), var(--charcoal) calc(50% - 0.5px), var(--charcoal) calc(50% + 0.5px), transparent calc(50% + 0.5px)) repeat-x;
+  background-size: 18px 100%;
+  background-color: var(--yellow);
+  position: relative;
+}
+.ruler-tick::before, .ruler-tick::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: var(--yellow);
+}
+.ruler-tick::before { left: 0; }
+.ruler-tick::after { right: 0; }
+
+/* ============================================================
+   TOP STRIP — Metric Edge identity
+   ============================================================ */
+.top-strip {
+  background: var(--charcoal-d);
+  color: rgba(255,255,255,0.85);
+  padding: 10px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.4px;
+}
+.top-strip .me-id { font-family: 'Archivo', sans-serif; font-weight: 900; letter-spacing: 2.2px; text-transform: uppercase; color: #fff; font-size: 0.82rem; }
+.top-strip .me-sub { color: rgba(255,255,255,0.55); font-size: 0.62rem; margin-top: 2px; letter-spacing: 0.6px; }
+.top-strip .doc-ref { text-align: right; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+.top-strip .doc-ref .doc-type { color: var(--yellow); font-size: 0.62rem; }
+.top-strip .doc-ref .doc-no { color: #fff; font-size: 0.78rem; margin-top: 1px; font-family: 'JetBrains Mono', monospace; }
+
+/* ============================================================
+   COVER BANNER
+   ============================================================ */
+.banner {
+  background: var(--charcoal);
+  color: #fff;
+  padding: 56px 28px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.banner::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -100px;
+  width: 360px;
+  height: 100%;
+  background: radial-gradient(circle at 60% 100%, rgba(245,191,43,0.10) 0%, transparent 60%);
+  pointer-events: none;
+}
+.banner .banner-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
+.banner .eyebrow { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--yellow); font-weight: 700; margin-bottom: 14px; font-family: 'Archivo', sans-serif; }
+.banner h1 {
+  font-family: 'Archivo', Georgia, serif;
+  font-size: 2.6rem;
+  font-weight: 900;
+  letter-spacing: -0.8px;
+  line-height: 1.05;
+  margin-bottom: 10px;
+}
+.banner .works {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.78);
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  max-width: 760px;
+}
+.banner .stage-tag {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 6px 14px;
+  background: var(--yellow);
+  color: var(--charcoal-d);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  font-family: 'Archivo', sans-serif;
+}
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+.content { max-width: 1280px; margin: 0 auto; padding: 28px; }
+
+/* ============================================================
+   PROJECT METADATA
+   ============================================================ */
+.meta-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(46,58,69,0.06);
+}
+.meta-card .meta-h {
+  padding: 13px 22px;
+  background: var(--charcoal);
+  color: #fff;
+  font-family: 'Archivo', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  border-bottom: 3px solid var(--yellow);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.meta-card .meta-h .tag { font-size: 0.6rem; padding: 2px 8px; background: var(--yellow); color: var(--charcoal-d); border-radius: 2px; }
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.meta-item {
+  padding: 16px 22px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.meta-item:nth-child(4n) { border-right: none; }
+.meta-item.span2 { grid-column: span 2; }
+.meta-item.span3 { grid-column: span 3; }
+.meta-item.span4 { grid-column: span 4; border-right: none; }
+.meta-item .label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.3px; color: var(--muted); font-weight: 700; margin-bottom: 5px; font-family: 'Archivo', sans-serif; }
+.meta-item .value { font-size: 0.92rem; color: var(--ink); font-weight: 600; line-height: 1.35; }
+.meta-item .value .accent { color: var(--charcoal); font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+
+/* ============================================================
+   STAKEHOLDERS (Client + Prepared By)
+   ============================================================ */
+.stakeholders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.stake {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  box-shadow: 0 1px 3px rgba(46,58,69,0.05);
+  transition: all var(--t);
+}
+.stake:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(46,58,69,0.08); }
+.stake .role { font-family: 'Archivo', sans-serif; font-size: 0.6rem; letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.stake .logo-wrap { height: 76px; display: flex; align-items: center; justify-content: center; width: 100%; padding: 4px 8px; }
+.stake .logo-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; }
+.stake .name { font-family: 'Archivo', sans-serif; font-size: 1rem; font-weight: 800; color: var(--ink); letter-spacing: -0.1px; }
+.stake .sub { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+.stake.client .logo-wrap { background: var(--paper-2); border-radius: 4px; }
+.stake.client .logo-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--accent-blue);
+  color: #fff;
+  border-radius: 4px;
+}
+.stake.client .logo-fallback .lf-1 { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 1.2px; line-height: 1; }
+.stake.client .logo-fallback .lf-2 { font-size: 0.55rem; letter-spacing: 1px; margin-top: 4px; opacity: 0.85; }
+.stake.me .me-mark {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--charcoal);
+  color: #fff;
+  border-radius: 4px;
+  position: relative;
+}
+.stake.me .me-mark .mm-1 { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 2.4px; }
+.stake.me .me-mark .mm-2 { font-size: 0.52rem; letter-spacing: 1.2px; color: var(--yellow); margin-top: 4px; font-weight: 700; }
+.stake.me .me-mark::before, .stake.me .me-mark::after {
+  content: '';
+  position: absolute;
+  left: 8px; right: 8px;
+  height: 3px;
+  background:
+    linear-gradient(to right, transparent calc(50% - 0.5px), var(--charcoal-d) calc(50% - 0.5px), var(--charcoal-d) calc(50% + 0.5px), transparent calc(50% + 0.5px)) repeat-x,
+    var(--yellow);
+  background-size: 9px 100%;
+}
+.stake.me .me-mark::before { top: 6px; }
+.stake.me .me-mark::after  { bottom: 6px; }
+
+/* ============================================================
+   HERO METRIC CARDS
+   ============================================================ */
+.mg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.m {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(46,58,69,0.05);
+}
+.m::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--accent-blue); }
+.m.charcoal::before { background: var(--charcoal); }
+.m.yellow::before { background: var(--yellow); }
+.m.green::before { background: var(--green); }
+.m-label { font-family: 'Archivo', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); margin-bottom: 8px; font-weight: 700; }
+.m-value { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; color: var(--ink); }
+.m-sub { font-size: 0.66rem; color: var(--muted); margin-top: 4px; font-weight: 500; }
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(46,58,69,0.05);
+}
+.card-h {
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: var(--paper-2);
+}
+.card-h h2 {
+  font-family: 'Archivo', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.1px;
+  text-transform: uppercase;
+}
+.card-h .h-sub { font-size: 0.7rem; color: var(--muted); font-weight: 500; letter-spacing: 0.2px; }
+.card-b { padding: 22px; }
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+th {
+  background: var(--charcoal);
+  color: #fff;
+  font-family: 'Archivo', sans-serif;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; font-family: 'JetBrains Mono', monospace; }
+td.c, th.c { text-align: center; }
+tr.nil-row td { background: var(--paper-2); color: var(--muted); font-style: italic; }
+tr.subtotal-row td { background: var(--paper-2); font-weight: 800; color: var(--charcoal-d); border-top: 2px solid var(--charcoal); }
+tr.cost-add td { background: #fdfaf0; color: var(--ink); font-weight: 600; }
+tr.cost-add td:first-child { padding-left: 22px; }
+tr.vat-row td { background: #f7f5ed; color: var(--ink-2); font-weight: 600; }
+tr.total-row td {
+  background: var(--charcoal);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  border-bottom: none;
+  border-top: 3px solid var(--yellow);
+}
+tr.builders-row td { background: var(--charcoal-l); color: #fff; font-weight: 700; border-top: 2px solid var(--charcoal); }
+tr.ex-vat-row td { background: var(--charcoal-l); color: #fff; font-weight: 700; }
+tr:last-child td { border-bottom: none; }
+.bar-cell { position: relative; padding-right: 14px; }
+.bar-cell .bar-fill {
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  height: 3px;
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+/* ============================================================
+   CHARTS
+   ============================================================ */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+@media (max-width: 980px) { .split { grid-template-columns: 1fr; } }
+.chart-wrap { position: relative; height: 360px; padding: 14px 4px; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 16px; padding: 8px 4px 4px; }
+.legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.7rem; color: var(--ink-2); }
+.legend-item .dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+/* ============================================================
+   ELEMENT ACCORDION
+   ============================================================ */
+.section {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(46,58,69,0.04);
+}
+.section.empty { opacity: 0.65; }
+.section-head {
+  padding: 13px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: background var(--t);
+  user-select: none;
+}
+.section.empty .section-head { cursor: default; }
+.section-head:hover { background: var(--paper-2); }
+.section.empty .section-head:hover { background: transparent; }
+.section-head .badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 5px;
+  background: var(--charcoal);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+  letter-spacing: -0.2px;
+}
+.section.empty .section-head .badge { background: var(--muted); }
+.section-head .title {
+  flex: 1;
+  font-family: 'Archivo', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.section-head .amount { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; margin-left: 14px; }
+.section-head .rate { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-left: 12px; font-weight: 500; min-width: 110px; text-align: right; }
+.section-head .pct { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-left: 12px; font-weight: 500; min-width: 52px; text-align: right; }
+.section-head .arrow { color: var(--muted); transition: transform var(--t); margin-left: 12px; font-size: 0.65rem; }
+.section.open .section-head .arrow { transform: rotate(180deg); }
+.section.open .section-head { background: var(--paper-2); border-bottom: 1px solid var(--border); }
+.section-body { display: none; }
+.section.open .section-body { display: block; }
+.nil-banner { padding: 22px; color: var(--muted); font-style: italic; font-size: 0.84rem; text-align: center; background: var(--paper-2); }
+
+/* ============================================================
+   NOTES + EXCLUSIONS
+   ============================================================ */
+.notes-card { border-left: 4px solid var(--yellow); }
+.notes-list { padding: 6px 4px; counter-reset: note-counter; }
+.notes-list li {
+  list-style: none;
+  padding: 10px 0 10px 36px;
+  position: relative;
+  font-size: 0.84rem;
+  color: var(--ink-2);
+  line-height: 1.55;
+  border-bottom: 1px dashed var(--border);
+}
+.notes-list li:last-child { border-bottom: none; }
+.notes-list li::before {
+  counter-increment: note-counter;
+  content: counter(note-counter);
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--charcoal);
+  color: var(--yellow);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.excl-card { border-left: 4px solid var(--red); }
+.excl-list { padding: 6px 4px; }
+.excl-list li {
+  list-style: none;
+  padding: 9px 0 9px 32px;
+  position: relative;
+  font-size: 0.82rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+  border-bottom: 1px dashed var(--border);
+}
+.excl-list li:last-child { border-bottom: none; }
+.excl-list li::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 16px;
+  width: 14px;
+  height: 2px;
+  background: var(--red);
+}
+
+/* ============================================================
+   SIGNATURE BLOCK
+   ============================================================ */
+.sig-block {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px 26px;
+  margin-bottom: 22px;
+  box-shadow: 0 1px 3px rgba(46,58,69,0.05);
+}
+.sig-block .sig-h { font-family: 'Archivo', sans-serif; font-size: 0.66rem; letter-spacing: 2.2px; text-transform: uppercase; color: var(--charcoal); font-weight: 800; margin-bottom: 22px; padding-bottom: 12px; border-bottom: 2px solid var(--yellow); }
+.sig-block .sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.sig-block .sig-party { display: flex; flex-direction: column; gap: 6px; }
+.sig-block .sig-party .role { font-family: 'Archivo', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); font-weight: 700; }
+.sig-block .sig-party .name { font-size: 0.92rem; font-weight: 700; color: var(--ink); margin-top: 2px; }
+.sig-block .sig-party .det { font-size: 0.74rem; color: var(--ink-2); line-height: 1.4; margin-bottom: 18px; }
+.sig-block .sig-party .underscore { border-bottom: 1.5px solid var(--ink); height: 28px; }
+.sig-block .sig-party .underscore-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 600; margin-top: 4px; font-family: 'Archivo', sans-serif; }
+.sig-block .sig-party .underscore-row { display: grid; grid-template-columns: 1.6fr 1fr; gap: 18px; margin-top: 6px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--charcoal-d);
+  color: rgba(255,255,255,0.65);
+  padding: 26px 28px 20px;
+  margin-top: 30px;
+}
+footer .foot-inner { max-width: 1280px; margin: 0 auto; }
+footer .foot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+footer .foot-id { font-family: 'Archivo', sans-serif; font-weight: 900; letter-spacing: 2.2px; text-transform: uppercase; color: #fff; font-size: 0.86rem; }
+footer .foot-sub { font-size: 0.7rem; margin-top: 4px; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); }
+footer .foot-meta { text-align: right; font-size: 0.7rem; letter-spacing: 0.4px; }
+footer .foot-meta .yellow-mark { color: var(--yellow); font-weight: 700; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 880px) {
+  .top-strip { padding: 8px 16px; font-size: 0.62rem; }
+  .banner { padding: 36px 18px 28px; }
+  .banner h1 { font-size: 1.7rem; }
+  .banner .works { font-size: 0.88rem; }
+  .content { padding: 16px; }
+  .meta-grid { grid-template-columns: 1fr 1fr; }
+  .meta-item:nth-child(4n) { border-right: 1px solid var(--border); }
+  .meta-item:nth-child(2n) { border-right: none; }
+  .meta-item.span2, .meta-item.span3, .meta-item.span4 { grid-column: span 2; }
+  .stakeholders { grid-template-columns: 1fr; }
+  .section-head { padding: 12px 14px; gap: 10px; flex-wrap: wrap; }
+  .section-head .rate, .section-head .pct { display: none; }
+  .section-head .badge { width: 38px; height: 38px; }
+  th, td { padding: 8px 9px; font-size: 0.72rem; }
+  .sig-block .sig-grid { grid-template-columns: 1fr; gap: 26px; }
+  footer .foot-grid { grid-template-columns: 1fr; text-align: center; }
+  footer .foot-meta { text-align: center; }
+}
+
+@media print {
+  body { background: #fff; color: #000; }
+  .top-strip, .banner, .meta-card .meta-h, footer, th, tr.total-row td, tr.builders-row td, tr.ex-vat-row td {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .card { break-inside: avoid; border: 1px solid #ddd; }
+  .section { break-inside: avoid; }
+  .section-body { display: block !important; }
+  .section-head .arrow { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== TOP STRIP ===== -->
+<div class="top-strip">
+  <div>
+    <div class="me-id">Metric Edge</div>
+    <div class="me-sub">Cost &amp; Construction Consultants &nbsp;&middot;&nbsp; Quantity Surveyors &nbsp;&middot;&nbsp; Durban, ZA</div>
+  </div>
+  <div class="doc-ref">
+    <div class="doc-type">Stage 4 Elemental Estimate</div>
+    <div class="doc-no">ME 419 &nbsp;&middot;&nbsp; 20 MAY 2026</div>
+  </div>
+</div>
+
+<!-- ===== RULER TICK (brand signature) ===== -->
+<div class="ruler-tick"></div>
+
+<!-- ===== BANNER ===== -->
+<div class="banner">
+  <div class="banner-inner">
+    <div class="eyebrow">Project No. ME 419 &nbsp;&middot;&nbsp; Kloof &middot; KwaZulu-Natal</div>
+    <h1>Kloof Junior Primary</h1>
+    <div class="works">Knowledge Hub &mdash; Additions and Alterations on a live school site</div>
+    <div class="stage-tag">Stage 4 &middot; Elemental Estimate &middot; Revision 00</div>
+  </div>
+</div>
+
+<!-- ===== RULER TICK ===== -->
+<div class="ruler-tick"></div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content">
+
+  <!-- ===== PROJECT INFORMATION ===== -->
+  <div class="meta-card">
+    <div class="meta-h">Project Information <span class="tag">Section 01</span></div>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="label">Project Reference</div>
+        <div class="value"><span class="accent">ME 419</span></div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Base Date</div>
+        <div class="value">May 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Gross Building Area</div>
+        <div class="value"><span class="accent">341 m&sup2;</span></div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Currency</div>
+        <div class="value">South African Rand (ZAR)</div>
+      </div>
+
+      <div class="meta-item span2">
+        <div class="label">Project Title</div>
+        <div class="value">Knowledge Hub &ndash; Kloof Junior Primary</div>
+      </div>
+      <div class="meta-item span2">
+        <div class="label">Site</div>
+        <div class="value">Kloof Junior Primary School, Kloof, KwaZulu-Natal</div>
+      </div>
+
+      <div class="meta-item span2">
+        <div class="label">Client</div>
+        <div class="value">Kloof Junior Primary School</div>
+      </div>
+      <div class="meta-item span2">
+        <div class="label">Document</div>
+        <div class="value">Stage 4 Elemental Estimate &middot; Revision 00</div>
+      </div>
+
+      <div class="meta-item span2">
+        <div class="label">Prepared By</div>
+        <div class="value">Stefan Coetzee &middot; PrQS 4923<br><span style="font-weight:500;color:var(--ink-2);font-size:0.82rem">Metric Edge Cost &amp; Construction Consultants (Pty) Ltd</span></div>
+      </div>
+      <div class="meta-item span2">
+        <div class="label">Issue Date</div>
+        <div class="value">20 May 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STAKEHOLDERS ===== -->
+  <div class="stakeholders">
+    <div class="stake client">
+      <div class="role">Client</div>
+      <div class="logo-wrap">
+        <img src="assets/client-logo.png" alt="Kloof Junior Primary School" onerror="this.outerHTML='<div class=\'logo-fallback\'><div class=\'lf-1\'>KJPS</div><div class=\'lf-2\'>EST. KLOOF, KZN</div></div>'">
+      </div>
+      <div class="name">Kloof Junior Primary School</div>
+      <div class="sub">Kloof &middot; eThekwini Municipality &middot; KZN</div>
+    </div>
+    <div class="stake me">
+      <div class="role">Prepared By</div>
+      <div class="logo-wrap">
+        <div class="me-mark">
+          <div class="mm-1">METRIC EDGE</div>
+          <div class="mm-2">COST &amp; CONSTRUCTION CONSULTANTS</div>
+        </div>
+      </div>
+      <div class="name">Metric Edge Cost &amp; Construction Consultants (Pty) Ltd</div>
+      <div class="sub">Stefan Coetzee &middot; PrQS 4923 &middot; Director</div>
+    </div>
+  </div>
+
+  <!-- ===== HERO METRICS ===== -->
+  <div class="mg">
+    <div class="m charcoal">
+      <div class="m-label">Sub-Total Elemental</div>
+      <div class="m-value">R 3,565,151</div>
+      <div class="m-sub">Sum of Elements 1.0 to 21.0</div>
+    </div>
+    <div class="m">
+      <div class="m-label">Total ex VAT</div>
+      <div class="m-value">R 4,335,086</div>
+      <div class="m-sub">Including prelims, contingency, escalation</div>
+    </div>
+    <div class="m yellow">
+      <div class="m-label">Total incl VAT</div>
+      <div class="m-value">R 4,985,349</div>
+      <div class="m-sub">Anticipated final construction cost</div>
+    </div>
+    <div class="m green">
+      <div class="m-label">Rate / m&sup2; (incl VAT)</div>
+      <div class="m-value">R 14,620</div>
+      <div class="m-sub">Across 341 m&sup2; GBA</div>
+    </div>
+  </div>
+
+  <!-- ===== ELEMENTAL COST SUMMARY ===== -->
+  <div class="card">
+    <div class="card-h">
+      <h2>Elemental Cost Summary</h2>
+      <span class="h-sub">Section 02 &middot; 21 ASAQS elements &middot; 341 m&sup2; GBA</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th class="c" style="width:42px">No.</th>
+          <th>Element</th>
+          <th class="r" style="width:130px">Rate / m&sup2; (R)</th>
+          <th class="r" style="width:160px">Total (R)</th>
+          <th class="r" style="width:88px">% of Net</th>
+        </tr>
+      </thead>
+      <tbody id="summaryRows"></tbody>
+      <tfoot>
+        <tr class="subtotal-row">
+          <td colspan="2"><strong>Sub-Total &mdash; Sum of Elements 1.0 to 21.0</strong></td>
+          <td class="r"><strong>R 10,454.99</strong></td>
+          <td class="r"><strong>R 3,565,151.40</strong></td>
+          <td class="r"><strong>100.0%</strong></td>
+        </tr>
+        <tr class="cost-add">
+          <td><strong>22.0</strong></td>
+          <td>Preliminaries @ 12% of Builders' Works</td>
+          <td class="r">R 1,254.60</td>
+          <td class="r">R 427,818.17</td>
+          <td class="r">12.0%</td>
+        </tr>
+        <tr class="builders-row">
+          <td colspan="2"><strong>Sub-Total &mdash; Builders' Works (excl VAT)</strong></td>
+          <td class="r"><strong>R 11,709.59</strong></td>
+          <td class="r"><strong>R 3,992,969.57</strong></td>
+          <td class="r">&mdash;</td>
+        </tr>
+        <tr class="cost-add">
+          <td><strong>23.0</strong></td>
+          <td>Contingency @ 5% of Builders' Works</td>
+          <td class="r">R 585.48</td>
+          <td class="r">R 199,648.48</td>
+          <td class="r">5.0%</td>
+        </tr>
+        <tr class="cost-add">
+          <td><strong>24.0</strong></td>
+          <td>Escalation &mdash; pre-contract (6% p.a.) + contract (7.5% p.a.)</td>
+          <td class="r">R 417.79</td>
+          <td class="r">R 142,468.00</td>
+          <td class="r">3.6%</td>
+        </tr>
+        <tr class="cost-add">
+          <td><strong>25.0</strong></td>
+          <td>Professional fees / other (excluded &mdash; refer separate fee proposal)</td>
+          <td class="r">&mdash;</td>
+          <td class="r">R 0.00</td>
+          <td class="r">&mdash;</td>
+        </tr>
+        <tr class="ex-vat-row">
+          <td colspan="2"><strong>Total Construction Budget &mdash; excl VAT</strong></td>
+          <td class="r"><strong>R 12,712.86</strong></td>
+          <td class="r"><strong>R 4,335,086.05</strong></td>
+          <td class="r">&mdash;</td>
+        </tr>
+        <tr class="vat-row">
+          <td colspan="2">Value-Added Tax @ 15%</td>
+          <td class="r">R 1,906.93</td>
+          <td class="r">R 650,262.91</td>
+          <td class="r">&mdash;</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="2"><strong>TOTAL CONSTRUCTION COST (INCL VAT)</strong></td>
+          <td class="r"><strong>R 14,619.79</strong></td>
+          <td class="r"><strong>R 4,985,348.95</strong></td>
+          <td class="r">&mdash;</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- ===== CHART ===== -->
+  <div class="card">
+    <div class="card-h">
+      <h2>Cost Split</h2>
+      <span class="h-sub">By element &middot; net builders' works basis &middot; nil elements omitted</span>
+    </div>
+    <div class="card-b">
+      <div class="chart-wrap"><canvas id="elementChart"></canvas></div>
+      <div class="legend" id="elementLegend"></div>
+    </div>
+  </div>
+
+  <!-- ===== DETAILED BREAKDOWN ===== -->
+  <div class="card" style="background:transparent;border:none;box-shadow:none">
+    <div class="card-h" style="background:transparent;border:none;padding:0 0 12px">
+      <h2>Detailed Elemental Breakdown</h2>
+      <span class="h-sub">Section 05 &middot; click any element to expand line items</span>
+    </div>
+    <div id="sections"></div>
+  </div>
+
+  <!-- ===== NOTES (Basis of Estimate) ===== -->
+  <div class="card notes-card">
+    <div class="card-h">
+      <h2>Basis of Estimate</h2>
+      <span class="h-sub">Section 03 &middot; explanatory notes &middot; 24 items</span>
+    </div>
+    <div class="card-b">
+      <ol class="notes-list" id="notesList"></ol>
+    </div>
+  </div>
+
+  <!-- ===== EXCLUSIONS ===== -->
+  <div class="card excl-card">
+    <div class="card-h">
+      <h2>Exclusions</h2>
+      <span class="h-sub">Section 04 &middot; scope boundary</span>
+    </div>
+    <div class="card-b">
+      <p style="font-size:0.84rem;color:var(--ink-2);margin-bottom:14px;line-height:1.55">The following items are specifically excluded from this estimate. Where a budgetary figure for any excluded item is required, a separate provisional sum will be issued on request.</p>
+      <ul class="excl-list" id="exclList"></ul>
+      <p style="font-size:0.78rem;color:var(--muted);margin-top:14px;padding-top:14px;border-top:1px solid var(--border);line-height:1.5;font-style:italic">Any items not specifically listed in the elemental breakdown above are deemed excluded. The estimate is a Stage 4 budgetary instrument; figures are subject to revision once design development and confirmation of the construction programme are complete.</p>
+    </div>
+  </div>
+
+  <!-- ===== SIGNATURE BLOCK ===== -->
+  <div class="sig-block">
+    <div class="sig-h">Section 06 &middot; Final Cost Statement &middot; Acknowledgement</div>
+    <div class="sig-grid">
+      <div class="sig-party">
+        <span class="role">Prepared By</span>
+        <span class="name">Stefan Coetzee</span>
+        <span class="det">PrQS 4923 &middot; Director<br>Metric Edge Cost &amp; Construction Consultants (Pty) Ltd</span>
+        <div class="underscore-row">
+          <div>
+            <span class="underscore"></span>
+            <div class="underscore-label">Signature</div>
+          </div>
+          <div>
+            <span class="underscore"></span>
+            <div class="underscore-label">Date</div>
+          </div>
+        </div>
+      </div>
+      <div class="sig-party">
+        <span class="role">Acknowledged By Client</span>
+        <span class="name">Kloof Junior Primary School</span>
+        <span class="det">Authorised Representative</span>
+        <div class="underscore-row">
+          <div>
+            <span class="underscore"></span>
+            <div class="underscore-label">Signature</div>
+          </div>
+          <div>
+            <span class="underscore"></span>
+            <div class="underscore-label">Date</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== RULER TICK ===== -->
+<div class="ruler-tick"></div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-id">Metric Edge &middot; ME 419</div>
+        <div class="foot-sub">Kloof Junior Primary &middot; Knowledge Hub &middot; Stage 4 Elemental Estimate &middot; 20 May 2026</div>
+      </div>
+      <div class="foot-meta">
+        <span class="yellow-mark">Soli Deo Gloria</span> &nbsp;&middot;&nbsp; All values ZAR &middot; Base Date May 2026<br>
+        <span style="font-size:0.62rem;opacity:0.7">Cost &amp; Construction Consultants &middot; Quantity Surveyors &middot; Durban, ZA</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// DATA — ME 419 Kloof Junior Primary Knowledge Hub
+// Verbatim from ME 419 Kloof Junior Primary - Stage 4 Elemental Estimate xlsx
+// ============================================================
+const SUBTOTAL = 3565151.40;
+const GBA = 341;
+
+const ELEMENT_COLOURS = [
+  '#2E3A45', '#4A6B85', '#6B8AA3', '#8FA7BD', '#A8C4D6',
+  '#F5BF2B', '#D4A314', '#A6831A', '#7C6314', '#5C490F',
+  '#2E7D32', '#4C9B50', '#8B5A3C', '#A87A55', '#C8966C',
+  '#9C4A4A', '#B86A5E', '#6B5876', '#8C7AA0', '#5B7C5D',
+  '#7A8590'
+];
+
+const ELEMENTS = [
+  {
+    id: '1.0', name: 'Substructure', amount: 163895,
+    items: [
+      { ref: '1.1', desc: 'New foundation footing &ndash; 800 &times; 400 mm 25 MPa concrete footing and 700 mm high one-brick wall', unit: 'm', qty: 45, rate: 2386, amt: 107370 },
+      { ref: '1.2', desc: 'Retaining wall &ndash; 800 &times; 400 mm 25 MPa concrete footing and 900 mm high brick wall',           unit: 'm', qty: 17, rate: 3325, amt: 56525 }
+    ]
+  },
+  {
+    id: '2.0', name: 'Ground Floor Construction', amount: 125430,
+    items: [
+      { ref: '2.1', desc: 'Surface bed &ndash; 200 mm thick 25 MPa unreinforced concrete on G5, DPM and mesh', unit: 'm²', qty: 185, rate: 678, amt: 125430 }
+    ]
+  },
+  {
+    id: '3.0', name: 'Structural Frame', amount: 378273,
+    items: [
+      { ref: '3.1', desc: 'New 200 mm thick 30 MPa concrete suspended slabs',           unit: 'm²', qty: 128, rate: 1371, amt: 175488 },
+      { ref: '3.2', desc: 'Concrete beams (400 &times; 300 mm) 30 MPa',                 unit: 'm',  qty: 100, rate: 1135, amt: 113500 },
+      { ref: '3.3', desc: 'Concrete columns (445 &times; 200 mm) &ndash; ground floor', unit: 'No', qty: 5,   rate: 2954, amt: 14770 },
+      { ref: '3.4', desc: 'Concrete columns (445 &times; 200 mm) &ndash; first floor',  unit: 'No', qty: 5,   rate: 3863, amt: 19315 },
+      { ref: '3.5', desc: 'Formwork to edges of slabs',                                  unit: 'm',  qty: 101, rate: 200,  amt: 20200 },
+      { ref: '3.6', desc: "Allowance for staircase builders' work (balustrades elsewhere)", unit: 'No', qty: 1, rate: 35000, amt: 35000 }
+    ]
+  },
+  {
+    id: '4.0', name: 'Structural Steelwork', amount: 0,
+    items: [{ desc: 'Nil &mdash; no structural steelwork specified at this stage', isNil: true }]
+  },
+  {
+    id: '5.0', name: 'External Envelope', amount: 548963,
+    items: [
+      { ref: '5.1',  desc: 'New 230 mm walls, 2600 mm high &ndash; ground floor (brick, plaster, skim, paint inside / out)', unit: 'm', qty: 40, rate: 3183, amt: 127320 },
+      { ref: '5.2',  desc: 'New 230 mm walls, ~2500 mm high &ndash; ground floor',                                          unit: 'm', qty: 5,  rate: 2947, amt: 14735 },
+      { ref: '5.3',  desc: 'New 230 mm walls, 3400 mm high &ndash; first floor',                                            unit: 'm', qty: 47, rate: 4008, amt: 188376 },
+      { ref: '5.4',  desc: 'Allowance for aluminium windows / shopfronts / doors &ndash; framed',                           unit: 'm²', qty: 48, rate: 3588, amt: 172224 },
+      { ref: '5.5',  desc: 'Deduct for openings',                                                                            unit: 'm²', qty: -48, rate: 1179, amt: -56592 },
+      { ref: '5.6',  desc: 'Deduct plaster for the above',                                                                   unit: 'm²', qty: -155, rate: 95, amt: -14725 },
+      { ref: '5.7',  desc: 'Extra over for facebrick to external walls',                                                     unit: 'm²', qty: 155, rate: 275, amt: 42625 },
+      { ref: '5.8',  desc: 'Allowance for Marmoran wall finish',                                                              unit: 'm²', qty: 30, rate: 750, amt: 22500 },
+      { ref: '5.9',  desc: 'Allowance for double doors incl. frame and ironmongery (dual opening)',                          unit: 'No', qty: 2, rate: 15000, amt: 30000 },
+      { ref: '5.10', desc: 'Allowance for single doors incl. frame and ironmongery',                                         unit: 'No', qty: 3, rate: 7500, amt: 22500 }
+    ]
+  },
+  {
+    id: '6.0', name: 'Roofs', amount: 363150,
+    items: [
+      { ref: '6.1', desc: 'Allowance for roof complete (sheeting, insulation, structure, gutters)',                  unit: 'm²', qty: 161, rate: 1650, amt: 265650 },
+      { ref: '6.2', desc: 'New canopy to roadside of classroom incl. translucent panels and support',                unit: 'm²', qty: 45,  rate: 1500, amt: 67500 },
+      { ref: '6.3', desc: 'Rainwater goods allowance',                                                                unit: 'Sum', qty: 1,  rate: 30000, amt: 30000 }
+    ]
+  },
+  {
+    id: '7.0', name: 'Internal Divisions', amount: 85697,
+    items: [
+      { ref: '7.1', desc: 'Half-brick internal walls, 2400 mm high &ndash; ground floor', unit: 'm',  qty: 8, rate: 2263, amt: 18104 },
+      { ref: '7.2', desc: 'Half-brick internal walls, 3200 mm high &ndash; first floor',  unit: 'm',  qty: 5, rate: 3018, amt: 15090 },
+      { ref: '7.3', desc: 'New 230 mm walls, 3200 mm high &ndash; first floor',           unit: 'm',  qty: 9, rate: 3711, amt: 33399 },
+      { ref: '7.4', desc: 'Internal doors &ndash; semi-solid, frame, ironmongery, paint, lintol', unit: 'No', qty: 3, rate: 6368, amt: 19104 }
+    ]
+  },
+  {
+    id: '8.0', name: 'Floor Finishes', amount: 236808,
+    items: [
+      { ref: '8.1', desc: 'Vinyl flooring internally (PC R 500/m² ex VAT, installation included, screed)', unit: 'm²', qty: 214, rate: 687, amt: 147018 },
+      { ref: '8.2', desc: 'Floor tiling to walkways, verandahs and staircases (PC R 300/m² ex VAT)',       unit: 'm²', qty: 105, rate: 598, amt: 62790 },
+      { ref: '8.3', desc: 'Internal skirting allowance',                                                    unit: 'm',  qty: 130, rate: 120, amt: 15600 },
+      { ref: '8.4', desc: 'External skirting allowance',                                                    unit: 'm',  qty: 114, rate: 100, amt: 11400 }
+    ]
+  },
+  {
+    id: '9.0', name: 'Internal Wall Finishes', amount: 1874,
+    items: [
+      { ref: '9.1', desc: 'Wall-tiled splashbacks (kitchenettes / basins) incl. waterproofing', unit: 'm²', qty: 2, rate: 937, amt: 1874 }
+    ]
+  },
+  {
+    id: '10.0', name: 'Ceilings & Soffits', amount: 167861,
+    items: [
+      { ref: '10.1', desc: 'Acoustic ceilings allowance &ndash; 1200 &times; 600 mm in gridwork', unit: 'm²', qty: 121, rate: 615, amt: 74415 },
+      { ref: '10.2', desc: 'Suspended ceilings to match existing &ndash; first floor',           unit: 'm²', qty: 91, rate: 482, amt: 43862 },
+      { ref: '10.3', desc: 'External ceiling allowance',                                          unit: 'm²', qty: 58, rate: 533, amt: 30914 },
+      { ref: '10.4', desc: 'Allowance for Shadowline cornices',                                   unit: 'm',  qty: 183, rate: 90, amt: 16470 },
+      { ref: '10.5', desc: 'Allowance for trap doors',                                            unit: 'No', qty: 2, rate: 1100, amt: 2200 }
+    ]
+  },
+  {
+    id: '11.0', name: 'Fittings & Related Fixed Equipment', amount: 458430,
+    items: [
+      { ref: '11.1', desc: 'Counter &ndash; ground floor Media Room',     unit: 'Item', qty: 1, rate: 30000,  amt: 30000 },
+      { ref: '11.2', desc: 'Full-height shelving &ndash; Consulting Room', unit: 'Item', qty: 1, rate: 50000,  amt: 50000 },
+      { ref: '11.3', desc: 'Kitchenette &ndash; ground floor',             unit: 'Item', qty: 1, rate: 35000,  amt: 35000 },
+      { ref: '11.4', desc: '2000 mm-high shelving',                       unit: 'Item', qty: 1, rate: 100000, amt: 100000 },
+      { ref: '11.5', desc: '1400 mm-high shelving',                       unit: 'Item', qty: 1, rate: 105000, amt: 105000 },
+      { ref: '11.6', desc: 'Sitting bench with book shelves',              unit: 'Item', qty: 1, rate: 100000, amt: 100000 },
+      { ref: '11.7', desc: 'Sundries (3% on items above)',                 unit: '%',    qty: 0.03, rate: 420000, amt: 12600 },
+      { ref: '11.8', desc: 'Profit and attendance for Main Contractor (6%)', unit: '%', qty: 0.06, rate: 430500, amt: 25830 }
+    ]
+  },
+  {
+    id: '12.0', name: 'Electrical Installation', amount: 220151.40,
+    items: [
+      { ref: '12.1', desc: 'Electrical installation allowance (provisional)',        unit: 'm²',       qty: 212, rate: 650,   amt: 137800 },
+      { ref: '12.2', desc: 'Light fittings allowance',                                unit: 'Prov Sum', qty: 1,  rate: 30000, amt: 30000 },
+      { ref: '12.3', desc: 'Plugs and switches allowance',                            unit: 'Prov Sum', qty: 1,  rate: 30000, amt: 30000 },
+      { ref: '12.4', desc: "Builders' work in connection (5%)",                       unit: '%',        qty: 0.05, rate: 197800, amt: 9890 },
+      { ref: '12.5', desc: 'Profit and attendance for Main Contractor (6%)',          unit: '%',        qty: 0.06, rate: 207690, amt: 12461.4 }
+    ]
+  },
+  {
+    id: '13.0', name: 'Electronic Installation', amount: 0,
+    items: [{ desc: 'Excluded &mdash; refer to separate specialist budget (data, security, AV, CCTV, access control)', isNil: true }]
+  },
+  {
+    id: '14.0', name: 'Mechanical and HVAC Installation', amount: 0,
+    items: [{ desc: 'Nil &mdash; air-conditioning and mechanical ventilation not currently in scope', isNil: true }]
+  },
+  {
+    id: '15.0', name: 'Plumbing and Drainage', amount: 28729,
+    items: [
+      { ref: '15.1', desc: 'Internal plumbing and drainage &ndash; kitchen sink, geyser, first &amp; second fix incl. markup',
+        unit: 'Item', qty: 1, rate: 28729, amt: 28729 }
+    ]
+  },
+  {
+    id: '16.0', name: 'Fire Services and Protection', amount: 35000,
+    items: [
+      { ref: '16.1', desc: 'Allowance for fire signage, extinguishers and hose-reel', unit: 'Sum', qty: 1, rate: 35000, amt: 35000 }
+    ]
+  },
+  {
+    id: '17.0', name: 'Balustrading and Handrails', amount: 137500,
+    items: [
+      { ref: '17.1', desc: 'Balustrades allowance', unit: 'm', qty: 55, rate: 2500, amt: 137500 }
+    ]
+  },
+  {
+    id: '18.0', name: 'Special Installations', amount: 0,
+    items: [{ desc: 'Nil &mdash; lifts, escalators, solar PV, pumping systems not in scope', isNil: true }]
+  },
+  {
+    id: '19.0', name: 'External Works and Services', amount: 256810,
+    items: [
+      { ref: '19.1',  desc: 'Paving (PC R 300/m² supplied, install, sub-base)',                                      unit: 'm²',  qty: 26, rate: 785,  amt: 20410 },
+      { ref: '19.2',  desc: 'Kerbing allowance',                                                                      unit: 'm',   qty: 35, rate: 240,  amt: 8400 },
+      { ref: '19.3',  desc: 'Stormwater-related adjustments / improvements provision',                                unit: 'Sum', qty: 1,  rate: 20000, amt: 20000 },
+      { ref: '19.4',  desc: 'Sewer-related adjustments / improvements provision',                                     unit: 'Sum', qty: 1,  rate: 10000, amt: 10000 },
+      { ref: '19.5',  desc: 'Water-reticulation adjustments / improvements provision',                                unit: 'Sum', qty: 1,  rate: 5000, amt: 5000 },
+      { ref: '19.6',  desc: 'Earthworks / fill allowance to make up levels for new verandah',                         unit: 'Sum', qty: 1,  rate: 10000, amt: 10000 },
+      { ref: '19.7',  desc: 'Landscaping &ndash; grass to edges of new pathway and minimal planting',                 unit: 'Sum', qty: 1,  rate: 30000, amt: 30000 },
+      { ref: '19.8',  desc: 'Aco drain on first floor allowance',                                                      unit: 'Sum', qty: 1,  rate: 5000, amt: 5000 },
+      { ref: '19.9',  desc: "New 'bridge construction' allowance",                                                     unit: 'Sum', qty: 1,  rate: 30000, amt: 30000 },
+      { ref: '19.10', desc: 'New canopy roof incl. translucent panels',                                                unit: 'm²',  qty: 45, rate: 1500, amt: 67500 },
+      { ref: '19.11', desc: 'Reposition portion of existing staircase and make good',                                 unit: 'Sum', qty: 1,  rate: 25000, amt: 25000 },
+      { ref: '19.12', desc: 'Allowance for new bench',                                                                 unit: 'Sum', qty: 1,  rate: 5500, amt: 5500 },
+      { ref: '19.13', desc: 'Allowance for new benches with bag-hooks (4 number off)',                                unit: 'No',  qty: 4,  rate: 5000, amt: 20000 }
+    ]
+  },
+  {
+    id: '20.0', name: 'Alterations', amount: 356580,
+    items: [
+      { ref: '20.1',  desc: 'Disconnect / remove JoJo tank, demolish concrete base, set aside tank for re-use',           unit: 'No',  qty: 1, rate: 4500,  amt: 4500 },
+      { ref: '20.2',  desc: 'Remove windows / shopfronts / prefab components and cart away or stockpile',                  unit: 'm²', qty: 98, rate: 350, amt: 34300 },
+      { ref: '20.3',  desc: 'Remove existing floor coverings and cart away',                                                unit: 'm²', qty: 98, rate: 40,  amt: 3920 },
+      { ref: '20.4',  desc: 'Remove existing ceilings and cart away',                                                       unit: 'm²', qty: 98, rate: 45,  amt: 4410 },
+      { ref: '20.5',  desc: 'Disconnect existing electrical installation and make safe',                                    unit: 'Sum', qty: 1, rate: 15000, amt: 15000 },
+      { ref: '20.6',  desc: 'Remove existing roof structure with asbestos covering &mdash; specialist disposal',           unit: 'm²', qty: 172, rate: 1000, amt: 172000 },
+      { ref: '20.7',  desc: 'Allowance for general items required to facilitate upgrade works',                             unit: 'm²', qty: 1, rate: 150,   amt: 150 },
+      { ref: '20.8',  desc: 'Remove existing timber doors and cart away or stockpile',                                      unit: 'No',  qty: 2, rate: 400, amt: 800 },
+      { ref: '20.9',  desc: 'Remove existing Canopy 1 (side of building), set aside for re-installation',                  unit: 'm²', qty: 33, rate: 350, amt: 11550 },
+      { ref: '20.10', desc: 'Remove existing Canopy 2 (front of building), set aside for re-installation',                  unit: 'm²', qty: 57, rate: 350, amt: 19950 },
+      { ref: '20.11', desc: 'Reinstallation of Canopy 1',                                                                   unit: 'm²', qty: 33, rate: 1000, amt: 33000 },
+      { ref: '20.12', desc: 'Reinstallation of Canopy 2 incl. necessary alterations and new translucent panels',           unit: 'm²', qty: 57, rate: 1000, amt: 57000 }
+    ]
+  },
+  {
+    id: '21.0', name: 'Others', amount: 0,
+    items: [{ desc: 'Nil &mdash; no other items captured at this stage', isNil: true }]
+  }
+];
+
+const NOTES = [
+  'This estimate has been prepared for the proposed Knowledge Hub addition at Kloof Junior Primary School. The Knowledge Hub is an alterations and additions project covering a gross building area of 341 m².',
+  'Numerous monetary sums are included as budgetary allowances against items where no design or scope has been identified at this stage.',
+  'Asbestos roof removal &mdash; the existing roof structure with asbestos sheeting is to be removed and disposed of by a specialist contractor; included under element 20.6 at R 171 600.',
+  'Canopy reinstatement &mdash; the two existing canopies are to be carefully removed, set aside and reinstated (including new translucent panels for Canopy 2); included under elements 20.9 to 20.12.',
+  "Electrical installation, light fittings and plugs &amp; switches &mdash; budgetary allowances under elements 12.1 to 12.3 with 5% builders' work in connection and 6% main contractor profit &amp; attendance.",
+  "Fittings allowance covers the Knowledge Hub joinery package (counter, shelving, kitchenette, sitting bench) per architect's intent &mdash; included under element 11.0 with 3% sundries and 6% main contractor profit &amp; attendance.",
+  'External envelope assumes 230 mm clay-brick walls plastered both sides with paint inside / out, with extra-over allowance for facebrick to external walls (155 m²) and a Marmoran feature allowance (30 m²).',
+  'Aluminium windows, shopfronts and doors &mdash; m² rate applied across an assumed 48 m² of openings under element 5.4, with corresponding deductions for openings (5.5 and 5.6).',
+  'Internal floor finishes &mdash; vinyl (PC R 500/m² ex VAT) to internal rooms; tiling (PC R 300/m² ex VAT) to walkways, verandahs and staircases.',
+  'Ceilings &mdash; 1200 &times; 600 mm acoustic ceilings in gridwork to the main Knowledge Hub spaces; suspended ceilings to match existing to first floor; external ceiling allowance for verandahs.',
+  'Balustrades &mdash; 55 metres of balustrading allowance at R 2 500 / m under element 17.1.',
+  'Fire services &mdash; signage, fire extinguishers and hose-reel allowance only (element 16.1); no sprinkler or detection system included.',
+  'Plumbing and drainage &mdash; composite allowance of R 28 729 covering kitchenette sink, undercounter geyser and first &amp; second fix.',
+  "External works include paving (26 m²), kerbing, stormwater / sewer / water adjustment allowances, landscaping, and a new 'bridge construction' allowance.",
+  "Preliminaries are taken at 12% of the builders' works sub-total per ASAQS guidance for projects of this scale and complexity (alterations / additions on a live school site); subject to confirmation at tender.",
+  "Contingency of 5% has been applied to the builders' works sub-total to cover design development and unforeseen items.",
+  'Escalation provisions cover the pre-contract period (May 2026 to July 2026 at 6% p.a.) and the contract period (July 2026 to March 2027 at 7.5% p.a.).',
+  'Professional fees are excluded &mdash; refer separate fee proposal.',
+  'Electronic installation (data, security, AV, CCTV, access control) is excluded; refer separate specialist budget.',
+  'Mechanical and HVAC &mdash; not currently in scope at element 14.0.',
+  'Special installations &mdash; lifts, escalators, solar PV and water-tank pumping systems are not currently in scope at element 18.0.',
+  'Loose furniture, fittings, equipment and IT hardware (FF&amp;E) are excluded.',
+  'VAT at 15% is added at the bottom of the cost summary.',
+  'All amounts are at the base date of May 2026 and are exclusive of VAT unless otherwise stated.'
+];
+
+const EXCLUSIONS = [
+  'Professional fees (architectural, engineering, quantity surveying, health-and-safety and other consultant fees)',
+  'Statutory charges &mdash; Council connection fees, building plan submission and scrutiny fees, town-planning fees and local-authority deposits',
+  'Electronic installation &mdash; data, security, audio-visual, CCTV and access-control systems (refer to separate specialist budget)',
+  'Mechanical / HVAC &mdash; air-conditioning, mechanical ventilation and refrigeration (not currently in scope)',
+  'Special installations &mdash; lifts, escalators, solar PV, water-tank pumping systems and similar specialist installations',
+  'Loose furniture, fittings, equipment, IT hardware, signage installation, branding and operator-supplied items',
+  'Demolitions, asbestos surveys and remediation works outside the bounds priced under Element 20.0',
+  'Geotechnical investigation',
+  'Environmental Impact Assessment',
+  'NHBRC levies',
+  'Finance-raising fees and cost of borrowing',
+  'Movable furniture and loose finishings',
+  'Land or property-related costs',
+  'Assessment rates',
+  'Any items not specifically listed in this elemental estimate are deemed excluded'
+];
+
+// ============================================================
+// FORMATTERS
+// ============================================================
+const fmtZAR = (v) => 'R ' + Number(v).toLocaleString('en-ZA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fmtZAR0 = (v) => 'R ' + Math.round(Number(v)).toLocaleString('en-ZA');
+const fmtQty = (v) => {
+  if (v === null || v === undefined || v === '') return '';
+  const n = Number(v);
+  if (Math.abs(n) < 1 && n !== 0) return (n * 100).toFixed(0) + '%';
+  return Number.isInteger(n) ? n.toString() : n.toLocaleString('en-ZA', { maximumFractionDigits: 2 });
+};
+const fmtPct = (v) => v.toFixed(1) + '%';
+
+// Assign colours
+ELEMENTS.forEach((el, i) => el.colour = ELEMENT_COLOURS[i % ELEMENT_COLOURS.length]);
+
+// ============================================================
+// ELEMENT SUMMARY
+// ============================================================
+function renderElementSummary() {
+  const tbody = document.getElementById('summaryRows');
+  const maxAmt = Math.max(...ELEMENTS.map(s => s.amount));
+  tbody.innerHTML = ELEMENTS.map(s => {
+    const pct = s.amount / SUBTOTAL * 100;
+    const rateM2 = s.amount / GBA;
+    const barW = maxAmt > 0 ? (s.amount / maxAmt * 100) : 0;
+    const isEmpty = s.amount === 0;
+    return `
+      <tr class="${isEmpty ? 'nil-row' : ''}">
+        <td class="c" style="font-weight:700;color:${isEmpty ? 'var(--muted)' : 'var(--charcoal-d)'};font-family:'JetBrains Mono',monospace">${s.id}</td>
+        <td><strong>${s.name}</strong></td>
+        <td class="r">${isEmpty ? '—' : fmtZAR(rateM2)}</td>
+        <td class="r bar-cell">
+          <strong>${fmtZAR(s.amount)}</strong>
+          ${!isEmpty ? `<div class="bar-fill" style="width:${barW}%;background:${s.colour}"></div>` : ''}
+        </td>
+        <td class="r">${isEmpty ? '—' : fmtPct(pct)}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// ============================================================
+// CHART
+// ============================================================
+function renderElementChart() {
+  const ctx = document.getElementById('elementChart').getContext('2d');
+  const visible = ELEMENTS.filter(s => s.amount > 0);
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: visible.map(s => s.id + ' ' + s.name),
+      datasets: [{
+        data: visible.map(s => s.amount),
+        backgroundColor: visible.map(s => s.colour),
+        borderColor: '#fff',
+        borderWidth: 2,
+        hoverOffset: 8
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '58%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const v = ctx.parsed;
+              const pct = (v / SUBTOTAL * 100).toFixed(1);
+              return ctx.label + ': ' + fmtZAR0(v) + ' (' + pct + '%)';
+            }
+          }
+        }
+      }
+    }
+  });
+  document.getElementById('elementLegend').innerHTML = visible.map(s =>
+    `<div class="legend-item"><span class="dot" style="background:${s.colour}"></span><span>${s.id} ${s.name}</span></div>`
+  ).join('');
+}
+
+// ============================================================
+// SECTION ACCORDION
+// ============================================================
+function buildElementBody(el) {
+  if (!el.items || !el.items.length) {
+    return '<div class="nil-banner">No line items captured.</div>';
+  }
+  if (el.amount === 0 && el.items[0] && el.items[0].isNil) {
+    return '<div class="nil-banner">' + el.items[0].desc + '</div>';
+  }
+  const rows = el.items.map(i => `
+    <tr>
+      <td style="font-weight:700;color:var(--charcoal-d);font-family:'JetBrains Mono',monospace;font-size:0.76rem">${i.ref || ''}</td>
+      <td>${i.desc}</td>
+      <td class="c" style="font-size:0.72rem;color:var(--muted)">${i.unit || ''}</td>
+      <td class="r">${fmtQty(i.qty)}</td>
+      <td class="r">${i.rate ? fmtZAR(i.rate) : ''}</td>
+      <td class="r" style="font-weight:700">${fmtZAR(i.amt)}</td>
+    </tr>
+  `).join('');
+  return `
+    <table>
+      <thead>
+        <tr>
+          <th style="width:52px">Code</th>
+          <th>Description</th>
+          <th class="c" style="width:80px">Unit</th>
+          <th class="r" style="width:70px">Qty</th>
+          <th class="r" style="width:110px">Rate (R)</th>
+          <th class="r" style="width:140px">Amount (R)</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+      <tfoot>
+        <tr class="subtotal-row">
+          <td colspan="5"><strong>Total &mdash; Element ${el.id} &nbsp;${el.name.toUpperCase()}</strong></td>
+          <td class="r"><strong>${fmtZAR(el.amount)}</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  `;
+}
+
+function renderSections() {
+  const wrap = document.getElementById('sections');
+  wrap.innerHTML = ELEMENTS.map((el, idx) => {
+    const pct = el.amount / SUBTOTAL * 100;
+    const rateM2 = el.amount / GBA;
+    const isEmpty = el.amount === 0;
+    return `
+      <div class="section${idx === 0 && !isEmpty ? ' open' : ''}${isEmpty ? ' empty' : ''}" data-element="${el.id}">
+        <div class="section-head" onclick="${isEmpty ? '' : "this.parentElement.classList.toggle('open')"}">
+          <div class="badge" style="${!isEmpty ? `background:${el.colour}` : ''}">${el.id.replace('.0','')}</div>
+          <div class="title">${el.name}</div>
+          <div class="rate">${isEmpty ? '—' : fmtZAR(rateM2) + ' /m²'}</div>
+          <div class="pct">${isEmpty ? 'Nil' : fmtPct(pct)}</div>
+          <div class="amount">${fmtZAR(el.amount)}</div>
+          <div class="arrow">${isEmpty ? '' : '▼'}</div>
+        </div>
+        <div class="section-body">
+          ${buildElementBody(el)}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ============================================================
+// NOTES + EXCLUSIONS
+// ============================================================
+function renderNotes() {
+  document.getElementById('notesList').innerHTML = NOTES.map(n => `<li>${n}</li>`).join('');
+  document.getElementById('exclList').innerHTML = EXCLUSIONS.map(e => `<li>${e}</li>`).join('');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderElementSummary();
+renderElementChart();
+renderSections();
+renderNotes();
+</script>
+</body>
+</html>
