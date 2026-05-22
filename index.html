@@ -190,11 +190,11 @@ body {
 .meta-item .value .accent { color: var(--charcoal); font-weight: 800; font-family: 'JetBrains Mono', monospace; }
 
 /* ============================================================
-   STAKEHOLDERS (Client + Prepared By)
+   STAKEHOLDERS (Client + Architect + QS)
    ============================================================ */
 .stakeholders {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;
   margin-bottom: 20px;
 }
@@ -217,46 +217,9 @@ body {
 .stake .logo-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; }
 .stake .name { font-family: 'Archivo', sans-serif; font-size: 1rem; font-weight: 800; color: var(--ink); letter-spacing: -0.1px; }
 .stake .sub { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
-.stake.client .logo-wrap { background: var(--paper-2); border-radius: 4px; }
-.stake.client .logo-fallback {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: var(--accent-blue);
-  color: #fff;
-  border-radius: 4px;
-}
-.stake.client .logo-fallback .lf-1 { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 1.2px; line-height: 1; }
-.stake.client .logo-fallback .lf-2 { font-size: 0.55rem; letter-spacing: 1px; margin-top: 4px; opacity: 0.85; }
-.stake.me .me-mark {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: var(--charcoal);
-  color: #fff;
-  border-radius: 4px;
-  position: relative;
-}
-.stake.me .me-mark .mm-1 { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 2.4px; }
-.stake.me .me-mark .mm-2 { font-size: 0.52rem; letter-spacing: 1.2px; color: var(--yellow); margin-top: 4px; font-weight: 700; }
-.stake.me .me-mark::before, .stake.me .me-mark::after {
-  content: '';
-  position: absolute;
-  left: 8px; right: 8px;
-  height: 3px;
-  background:
-    linear-gradient(to right, transparent calc(50% - 0.5px), var(--charcoal-d) calc(50% - 0.5px), var(--charcoal-d) calc(50% + 0.5px), transparent calc(50% + 0.5px)) repeat-x,
-    var(--yellow);
-  background-size: 9px 100%;
-}
-.stake.me .me-mark::before { top: 6px; }
-.stake.me .me-mark::after  { bottom: 6px; }
+.stake.client .logo-wrap { background: #19326c; border-radius: 4px; }
+.stake.architect .logo-wrap { background: var(--paper-2); border-radius: 4px; }
+.stake.me .logo-wrap { background: var(--charcoal); border-radius: 4px; }
 
 /* ============================================================
    HERO METRIC CARDS
@@ -652,21 +615,26 @@ footer .foot-meta .yellow-mark { color: var(--yellow); font-weight: 700; }
     <div class="stake client">
       <div class="role">Client</div>
       <div class="logo-wrap">
-        <img src="assets/client-logo.png" alt="Kloof Junior Primary School" onerror="this.outerHTML='<div class=\'logo-fallback\'><div class=\'lf-1\'>KJPS</div><div class=\'lf-2\'>EST. KLOOF, KZN</div></div>'">
+        <img src="assets/client-logo.png" alt="Kloof Junior Primary School">
       </div>
       <div class="name">Kloof Junior Primary School</div>
       <div class="sub">Kloof &middot; eThekwini Municipality &middot; KZN</div>
     </div>
-    <div class="stake me">
-      <div class="role">Prepared By</div>
+    <div class="stake architect">
+      <div class="role">Architect</div>
       <div class="logo-wrap">
-        <div class="me-mark">
-          <div class="mm-1">METRIC EDGE</div>
-          <div class="mm-2">COST &amp; CONSTRUCTION CONSULTANTS</div>
-        </div>
+        <img src="assets/architect-logo.png" alt="Sphere Design &amp; Architecture">
       </div>
-      <div class="name">Metric Edge Cost &amp; Construction Consultants (Pty) Ltd</div>
-      <div class="sub">Stefan Coetzee &middot; PrQS 4923 &middot; Director</div>
+      <div class="name">Sphere Design &amp; Architecture</div>
+      <div class="sub">Architectural Design &middot; Project Drawings</div>
+    </div>
+    <div class="stake me">
+      <div class="role">Quantity Surveyor</div>
+      <div class="logo-wrap">
+        <img src="assets/qs-logo.png" alt="Metric Edge">
+      </div>
+      <div class="name">Metric Edge</div>
+      <div class="sub">Cost &amp; Construction Consultants &middot; Stefan Coetzee PrQS 4923</div>
     </div>
   </div>
 
