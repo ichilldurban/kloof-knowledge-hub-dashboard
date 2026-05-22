@@ -4,12 +4,13 @@ Single-page Stage 4 elemental cost estimate dashboard for **ME 419 — Kloof Jun
 
 - **Client:** Kloof Junior Primary School
 - **Prepared by:** Metric Edge Cost & Construction Consultants (Pty) Ltd
-- **Document:** Stage 4 Elemental Estimate
+- **Document:** Stage 2 Elemental Estimate · Revision 00
 - **GBA:** 341 m²
 - **Base date:** May 2026
-- **Issued:** 20 May 2026
-- **Total construction cost (incl VAT):** R 4,985,348.95
-- **Rate / m² (incl VAT):** R 14,619.79
+- **Issued:** 21 May 2026
+- **Sub-Total Elemental:** R 3,577,000.38
+- **Total construction cost (incl VAT):** R 5,136,071.58
+- **Rate / m² (incl VAT):** R 15,061.79
 
 ## Stack
 
